@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citations Inspirantes – DévPerso</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.html">
+            <i class="fas fa-brain me-2"></i>DévPerso
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="challenges.html">Challenges</a></li>
+                <li class="nav-item"><a class="nav-link active" href="citation.html">Citations</a></li>
+                <li class="nav-item"><a class="nav-link" href="favorites.html">Favoris</a></li>
+                <li class="nav-item"><a class="nav-link" href="affirmations.html">Affirmations</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Tableau de bord</a></li>
+                <li class="nav-item"><a class="nav-link" href="a propos.html">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero-section d-flex align-items-center" style="min-height: 40vh; padding: 120px 0 50px;">
+    <div class="container text-center">
+        <i class="fas fa-quote-left fa-3x mb-3 text-white" style="color: var(--primary);"></i>
+        <h1 class="display-3 fw-bold mb-3">
+            <span class="text-gradient">Citations</span> Inspirantes
+        </h1>
+        <p class="lead text-white-50">Motivation, confiance, discipline, gratitude… trouve l'inspiration dont tu as besoin.</p>
+    </div>
+</header>
+
+<!-- Quote of the Day Section -->
+<section class="container py-5 mt-n4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="quote-of-day p-4 p-md-5">
+                <div class="quote-display text-center p-4 rounded-lg" style="background: rgba(255, 255, 255, 0.95);">
+                    <i class="fas fa-star mb-3 d-block" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h2 class="fw-bold mb-3" style="background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Citation du jour</h2>
+<p id="quote" class="fs-4 fw-bold mb-4" style="font-style: italic; color: #1a1a2e;"></p>
+                    
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <button class="btn btn-primary" onclick="newQuote()">
+                            <i class="fas fa-sync-alt me-1"></i>Nouvelle
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="copyQuote()">
+                            <i class="fas fa-copy me-1"></i>Copier
+                        </button>
+                        <button id="btnFavorite" class="btn btn-outline-danger" onclick="toggleFavorite()">
+                            <i class="far fa-heart me-1"></i>Favoris
+                        </button>
+                        <button class="btn btn-outline-success" onclick="shareWhatsApp()">
+                            <i class="fab fa-whatsapp me-1"></i>WhatsApp
+                        </button>
+                        <button class="btn btn-warning" onclick="generateImage()">
+                            <i class="fas fa-image me-1"></i>Image
+                        </button>
+                        <button class="btn btn-info" onclick="fetchAPIQuote()">
+                            <i class="fas fa-globe me-1"></i>API
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <canvas id="quoteCanvas" width="1080" height="1080" style="display:none;"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Buttons -->
+<section class="container py-3">
+    <div class="text-center mb-4">
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('motivation')">💪 Motivation</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('confiance')">🔥 Confiance</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('discipline')">⚡ Discipline</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('gratitude')">🙏 Gratitude</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('succes')">🏆 Succès</button>
+        <button class="btn btn-outline-primary m-1" onclick="filterQuotes('perseverance')">🌟 Persévérance</button>
+        <button class="btn btn-secondary m-1" onclick="filterQuotes('all')">Tout</button>
+    </div>
+</section>
+
+<!-- Citations by Category -->
+<section class="container py-5">
+    <div class="row g-4">
+        <!-- Motivation -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="motivation" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-fist-raised me-2" style="color: var(--primary);"></i>Motivation</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"Le succès est la somme de petits efforts répétés jour après jour."</li>
+                    <li class="mb-2">"Fais aujourd'hui ce que les autres ne veulent pas faire."</li>
+                    <li class="mb-2">"Tu n'échoues jamais tant que tu continues d'essayer."</li>
+                    <li class="mb-2">"La motivation te pousse à commencer, l'habitude te fait continuer."</li>
+                    <li class="mb-2">"Le moment où tu veux abandonner est juste avant le miracle."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Confiance -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="confiance" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-fire me-2" style="color: var(--accent);"></i>Confiance en soi</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"Tu es plus capable que tu ne l'imagines."</li>
+                    <li class="mb-2">"Crois en toi et tout devient possible."</li>
+                    <li class="mb-2">"La confiance vient en faisant, pas en attendant."</li>
+                    <li class="mb-2">"Tu es suffisant, exactement comme tu es."</li>
+                    <li class="mb-2">"Ta valeur ne diminue pas basée sur l'opinion de quelqu'un."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Discipline -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="discipline" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-bolt me-2" style="color: var(--secondary);"></i>Discipline</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"La discipline te mène là où la motivation ne suffit pas."</li>
+                    <li class="mb-2">"Fais ce qui doit être fait, même quand tu n'en as pas envie."</li>
+                    <li class="mb-2">"La constance bat le talent."</li>
+                    <li class="mb-2">"La discipline est le pont entre tes rêves et leur réalisation."</li>
+                    <li class="mb-2">"Un jour de discipline vaut mieux que 90 jours de regret."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Gratitude -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="gratitude" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-hands-praying me-2" style="color: var(--success);"></i>Gratitude</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"La gratitude transforme ce que tu as en assez."</li>
+                    <li class="mb-2">"Chaque jour apporte une nouvelle raison de dire merci."</li>
+                    <li class="mb-2">"La gratitude attire plus de choses positives."</li>
+                    <li class="mb-2">"Sois reconnaissant pour les petites choses."</li>
+                    <li class="mb-2">"Compte tes bénédictions, pas tes problèmes."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Succès -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="succes" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-trophy me-2"></i>Succès</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès."</li>
+                    <li class="mb-2">"Le succès, c'est passer d'échec en échec sans perdre son enthousiasme."</li>
+                    <li class="mb-2">"Le succès n'est pas définitif, l'échec n'est pas fatal."</li>
+                    <li class="mb-2">"Les winners trouvent des solutions, les perdants trouvent des excuses."</li>
+                    <li class="mb-2">"Le succès est au bout de la peur."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Persévérance -->
+        <div class="col-md-6">
+            <div class="card shadow-sm rounded-xl p-4 h-100 category-box" data-category="perseverance" style="border: none;">
+                <h4 class="fw-bold mb-3"><i class="fas fa-star me-2" style="color: var(--accent-pink);"></i>Persévérance</h4>
+                <ul class="list-unstyled">
+                    <li class="mb-2">"La persévérance n'est pas un long parcours, c'est beaucoup de petits pas."</li>
+                    <li class="mb-2">"Ne regarde pas en arrière, sauf pour voir à quel point tu as avancées."</li>
+                    <li class="mb-2">"Les gens qui réussissent sont ceux qui se relevent quand ils tombent."</li>
+                    <li class="mb-2">"La chute n'est pas l'échec. L'échec, c'est de rester là où on est tombé."</li>
+                    <li class="mb-2">"Sois patient avec toi-même. Le changement prend du temps."</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Great Thinkers Section -->
+<section class="container py-5">
+    <h3 class="fw-bold mb-4 text-center">Citations de grands penseurs</h3>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Nelson Mandela</h5>
+                <p class="text-muted">"Je ne perds jamais. Soit je gagne, soit j'apprends."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Confucius</h5>
+                <p class="text-muted">"Celui qui déplace une montagne commence par déplacer les petites pierres."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Winston Churchill</h5>
+                <p class="text-muted">"Le succès c'est d'aller d'échec en échec sans perdre son enthousiasme."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Albert Einstein</h5>
+                <p class="text-muted">"La folie, c'est de faire toujours la même chose et s'attendre à un résultat différent."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Steve Jobs</h5>
+                <p class="text-muted">"Restez affamés, restez fous."</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm rounded-xl p-4" style="border: none;">
+                <h5 class="fw-bold">Mahatma Gandhi</h5>
+                <p class="text-muted">"Sois le changement que tu veux voir dans le monde."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mb-0">© 2026 DévPerso – Tous droits réservés</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="privacy.html" class="text-white-50 me-3">Confidentialité</a>
+                <a href="terms.html" class="text-white-50 me-3">Conditions</a>
+                <a href="cookies.html" class="text-white-50">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="auth.js"></script>
+<script>
+const dailyQuotes = [
+    "Chaque jour est une nouvelle opportunité.",
+    "Tu es capable de grandes choses.",
+    "La constance bat le talent.",
+    "Tu mérites le bonheur.",
+    "Le succès commence par une décision."
+];
+
+function loadDailyQuote() {
+    const today = new Date().toISOString().split("T")[0];
+    let saved = JSON.parse(localStorage.getItem("dailyQuote") || "{}");
+    if (saved.date !== today) {
+        saved = {
+            date: today,
+            quote: dailyQuotes[Math.floor(Math.random() * dailyQuotes.length)]
+        };
+        localStorage.setItem("dailyQuote", JSON.stringify(saved));
+    }
+    document.getElementById("quote").innerText = saved.quote;
+}
+
+const quotes = [
+    "Le succès est la somme de petits efforts répétés jour après jour.",
+    "Tu es plus fort que tu ne le penses.",
+    "Chaque jour est une nouvelle chance de devenir meilleur.",
+    "La discipline te mène là où la motivation ne suffit pas.",
+    "Commence là où tu es, utilise ce que tu as, fais ce que tu peux.",
+    "Le changement commence quand tu décides d'essayer.",
+    "La persévérance finit toujours par être récompensée.",
+    "Sois la raison pour laquelle quelqu'un croit en l'humanité.",
+    "Le seul moyen de découvrir tes limites est de les dépasser."
+];
+
+let currentQuote = "";
+
+function newQuote() {
+    currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("quote").innerText = currentQuote;
+    updateFavoriteButton();
+}
+
+function updateFavoriteButton() {
+    const text = document.getElementById("quote").innerText;
+    const btn = document.getElementById("btnFavorite");
+    let favs = JSON.parse(localStorage.getItem("favorites") || "[]");
+    if (favs.includes(text)) {
+        btn.innerHTML = '<i class="fas fa-heart me-1"></i>Favoris';
+        btn.className = "btn btn-danger";
+    } else {
+        btn.innerHTML = '<i class="far fa-heart me-1"></i>Favoris';
+        btn.className = "btn btn-outline-danger";
+    }
+}
+
+function toggleFavorite() {
+    const text = document.getElementById("quote").innerText;
+    let favs = JSON.parse(localStorage.getItem("favorites") || "[]");
+    if (favs.includes(text)) {
+        favs = favs.filter(q => q !== text);
+        alert("Citation retirée des favoris !");
+    } else {
+        favs.push(text);
+        alert("Ajouté aux favoris !");
+    }
+    localStorage.setItem("favorites", JSON.stringify(favs));
+    updateFavoriteButton();
+}
+
+function copyQuote() {
+    const text = document.getElementById("quote").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Citation copiée !");
+}
+
+function shareWhatsApp() {
+    const text = document.getElementById("quote").innerText;
+    const url = "https://wa.me/?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+}
+
+function generateImage() {
+    const canvas = document.getElementById("quoteCanvas");
+    const ctx = canvas.getContext("2d");
+    const text = document.getElementById("quote").innerText;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#000000";
+    ctx.font = "48px serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    wrapText(ctx, text, canvas.width / 2, canvas.height / 2, 900, 60);
+    const link = document.createElement("a");
+    link.download = "citation.png";
+    link.href = canvas.toDataURL();
+    link.click();
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(" ");
+    let line = "";
+    let lines = [];
+    for (let w of words) {
+        const testLine = line + w + " ";
+        const width = ctx.measureText(testLine).width;
+        if (width > maxWidth) {
+            lines.push(line);
+            line = w + " ";
+        } else {
+            line = testLine;
+        }
+    }
+    lines.push(line);
+    const offset = (lines.length * lineHeight) / 2;
+    lines.forEach((l, i) => {
+        ctx.fillText(l, x, y - offset + i * lineHeight);
+    });
+}
+
+async function fetchAPIQuote() {
+    try {
+        const res = await fetch("https://type.fit/api/quotes");
+        const data = await res.json();
+        const random = data[Math.floor(Math.random() * data.length)];
+        currentQuote = random.text;
+        document.getElementById("quote").innerText = random.text;
+        updateFavoriteButton();
+    } catch (e) {
+        alert("Erreur lors du chargement. Veuillez réessayer.");
+    }
+}
+
+function filterQuotes(category) {
+    const boxes = document.querySelectorAll(".category-box");
+    boxes.forEach(box => {
+        if (category === "all" || box.dataset.category === category) {
+            box.style.display = "block";
+        } else {
+            box.style.display = "none";
+        }
+    });
+}
+
+loadDailyQuote();
+</script>
+</body>
+</html>

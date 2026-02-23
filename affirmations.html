@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affirmations Positives – DévPerso</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="index.html">
+            <i class="fas fa-brain me-2"></i>DévPerso
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="challenges.html">Challenges</a></li>
+                <li class="nav-item"><a class="nav-link" href="citation.html">Citations</a></li>
+                <li class="nav-item"><a class="nav-link" href="favorites.html">Favoris</a></li>
+                <li class="nav-item"><a class="nav-link active" href="affirmations.html">Affirmations</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Tableau de bord</a></li>
+                <li class="nav-item"><a class="nav-link" href="a propos.html">À propos</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero-section d-flex align-items-center" style="min-height: 40vh; padding: 120px 0 50px; background: linear-gradient(135deg, #F59E0B 0%, #EC4899 100%);">
+    <div class="container text-center">
+        <i class="fas fa-sun fa-3x mb-3 text-white"></i>
+        <h1 class="display-3 fw-bold mb-3">
+            <span class="text-white">Affirmations</span> Positives
+        </h1>
+        <p class="lead text-white-50">Renforce ta confiance avec des affirmations quotidiennes</p>
+    </div>
+</header>
+
+<!-- Main Content -->
+<section class="container py-5 mt-n4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Main Affirmation Card -->
+            <div class="card shadow-elegant rounded-xl p-md-5 p-4 text-center" style="background: white; border: none;">
+                <div class="mb-4">
+                    <i class="fas fa-quote-left fa-2x" style="color: var(--accent);"></i>
+                </div>
+                <p id="affirmation" class="fs-3 fw-bold mb-4" style="color: var(--dark); min-height: 100px; display: flex; align-items: center; justify-content: center;">
+                    Je suis capable de grandes choses.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <button class="btn btn-primary btn-lg" onclick="newAffirmation()">
+                        <i class="fas fa-sync-alt me-2"></i>Nouvelle affirmation
+                    </button>
+                    <button class="btn btn-outline-danger" onclick="saveAffirmationFavorite()">
+                        <i class="far fa-heart me-2"></i>Favoris
+                    </button>
+                    <button class="btn btn-outline-primary" onclick="shareAffirmation()">
+                        <i class="fas fa-share-alt me-2"></i>Partager
+                    </button>
+                </div>
+            </div>
+
+            <!-- Affirmation Categories -->
+            <div class="mt-5">
+                <h3 class="fw-bold mb-4 text-center">Catégories d'affirmations</h3>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm rounded-xl p-4 text-center category-card" style="border: none; cursor: pointer; transition: transform 0.3s;">
+                            <div class="feature-icon mx-auto mb-3" style="background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h5 class="fw-bold">Confiance</h5>
+                            <p class="text-muted small">Renforce ta confiance en toi</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm rounded-xl p-4 text-center category-card" style="border: none; cursor: pointer; transition: transform 0.3s;">
+                            <div class="feature-icon mx-auto mb-3" style="background: linear-gradient(135deg, #F59E0B 0%, #F97316 100%);">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h5 class="fw-bold">Amour</h5>
+                            <p class="text-muted small">Aime-toi et aime les autres</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 shadow-sm rounded-xl p-4 text-center category-card" style="border: none; cursor: pointer; transition: transform 0.3s;">
+                            <div class="feature-icon mx-auto mb-3" style="background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h5 class="fw-bold">Énergie</h5>
+                            <p class="text-muted small">Booste ta énergie positive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affirmations Grid -->
+            <div class="mt-5">
+                <h3 class="fw-bold mb-4 text-center">Toutes les affirmations</h3>
+                <div class="row g-3" id="affirmationsGrid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="mb-0">© 2026 DévPerso – Tous droits réservés</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="privacy.html" class="text-white-50 me-3">Confidentialité</a>
+                <a href="terms.html" class="text-white-50 me-3">Conditions</a>
+                <a href="cookies.html" class="text-white-50">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const affirmations = [
+    // Confiance
+    "Je suis capable de grandes choses.",
+    "Je crois en moi et en mes capacités.",
+    "Je mérite le succès et la bonheur.",
+    "Je suis assez, exactement comme je suis.",
+    "Je fais confiance à mon intuition.",
+    // Amour
+    "Je m'aime et je m'accepte comme je suis.",
+    "Je mérite l'amour et le respect.",
+    "Je suis entouré d'amour et de positivité.",
+    "Je choisis de voir le bon en moi et en les autres.",
+    "Mon cœur est ouvert à donner et recevoir l'amour.",
+    // Énergie
+    "Je suis plein d'énergie positive.",
+    "Chaque jour, je progresse vers mes objectifs.",
+    "Ma vie est pleine de possibilités.",
+    "J'attire à moi tout ce dont j'ai besoin.",
+    "Je suis reconnaissant pour tout ce que j'ai.",
+    // Succès
+    "Je réussis tout ce que j'entreprends.",
+    "Le succès est mon chemin naturel.",
+    "Je crée ma propre réussite.",
+    "Mes pensées positives créent ma réalité.",
+    "Je suis digne de réussir."
+];
+
+function newAffirmation() {
+    const affirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+    document.getElementById("affirmation").innerText = affirmation;
+    
+    // Add animation
+    const el = document.getElementById("affirmation");
+    el.style.opacity = '0';
+    setTimeout(() => {
+        el.style.transition = 'opacity 0.5s';
+        el.style.opacity = '1';
+    }, 100);
+}
+
+function saveAffirmationFavorite() {
+    const affirmation = document.getElementById("affirmation").innerText;
+    let favs = JSON.parse(localStorage.getItem("affirmationFavorites") || "[]");
+    
+    if (!favs.includes(affirmation)) {
+        favs.push(affirmation);
+        localStorage.setItem("affirmationFavorites", JSON.stringify(favs));
+        alert("Affirmation ajoutée à tes favoris !");
+    } else {
+        alert("Cette affirmation est déjà dans tes favoris.");
+    }
+}
+
+function shareAffirmation() {
+    const affirmation = document.getElementById("affirmation").innerText;
+    const url = "https://wa.me/?text=" + encodeURIComponent(affirmation + " - DévPerso");
+    window.open(url, "_blank");
+}
+
+// Populate affirmations grid
+function loadAffirmationsGrid() {
+    const grid = document.getElementById("affirmationsGrid");
+    affirmations.forEach((aff, index) => {
+        grid.innerHTML += `
+            <div class="col-12">
+                <div class="card shadow-sm rounded-lg p-3" style="border: none; cursor: pointer;" onclick="document.getElementById('affirmation').innerText = '${aff}'">
+                    <p class="mb-0 fw-medium">${aff}</p>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Initialize
+newAffirmation();
+loadAffirmationsGrid();
+
+const widgetQuotes = [
+    "Tu es capable de grandes choses.",
+    "Chaque jour est une nouvelle opportunité.",
+    "La constance bat le talent.",
+    "Tu mérites le bonheur.",
+    "Continue, tu es sur la bonne voie."
+];
+</script>
+
+<style>
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+#affirmation {
+    transition: opacity 0.5s ease;
+}
+</style>
+
+</body>
+</html>
